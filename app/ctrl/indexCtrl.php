@@ -1,15 +1,21 @@
 <?php
 namespace app\ctrl;
 
-class indexCtrl
+class indexCtrl extends \core\kiking
 {
     public function index()
     {
-        dump('it is indexsss');
-        $model = new \core\lib\model();
-        $sql = 'SELECT * FROM kiking_article_type';
-        $res = $model->query($sql);
-        dump($res->fetchAll());
+        $data = 'Hello World';
+        $age = 30;
+        $arr = [
+            'name' => 'aaa',
+            'sex' => 2,
+            'tel' => 12345679
+        ];
+        $this->data('arr', $arr);
+        $this->data('age', $age);
+        $this->data('data', $data);
+        $this->view('index.html');
     }
 
     public function blog()

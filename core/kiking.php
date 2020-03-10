@@ -5,6 +5,7 @@ namespace core;
 class kiking
 {
     public static $classMap = [];
+    public $data;
 
     public static function run()
     {
@@ -36,6 +37,20 @@ class kiking
             } else {
                 return FALSE;
             }
+        }
+    }
+
+    public function data($name, $value)
+    {
+        $this->data[$name] = $value;
+    }
+
+    public function view($file)
+    {
+        $file = APP . '/views/' . $file;
+        if (is_file($file)) {
+            extract($this->data);
+            include $file;
         }
     }
 }
