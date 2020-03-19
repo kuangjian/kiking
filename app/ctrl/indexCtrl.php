@@ -5,6 +5,8 @@ class indexCtrl extends \core\kiking
 {
     public function index()
     {
+        $temp = \core\lib\conf::get('CTRL', 'route');
+        dump($temp);
         $data = 'Hello World';
         $age = 30;
         $arr = [

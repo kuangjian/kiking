@@ -19,8 +19,7 @@ class kiking
             $ctrl = new $ctrl_class();
             $ctrl->$action();
         } else {
-            throw new Exception('找不到控制器' . $ctrl_class);
-            
+            throw new \Exception('找不到控制器' . $ctrl_class);
         }
     }
 
