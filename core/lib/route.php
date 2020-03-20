@@ -2,6 +2,8 @@
 
 namespace core\lib;
 
+use core\lib\conf;
+
 class route
 {
     public $ctrl;
@@ -17,7 +19,7 @@ class route
             if (isset($patharr[1])) {
                 $this->action = $patharr[1];
             } else {
-                $this->action = 'index';
+                $this->action = conf::get('ACTION', 'route');
             }
 
             $count = count($patharr) + 2;
@@ -29,8 +31,8 @@ class route
                 $i = $i + 2;
             }
         } else {
-            $this->ctrl = 'index';
-            $this->action = 'index';
+            $this->ctrl = conf::get('CTRL', 'route');
+            $this->action = conf::get('ACTION', 'route');
         }
     }
 }
