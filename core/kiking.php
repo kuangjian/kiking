@@ -9,15 +9,17 @@ class kiking
 
     public static function run()
     {
+        \core\lib\log::init();
         $route = new \core\lib\route();
-        $ctrl_class = $route->ctrl;
+        $control = $route->ctrl;
         $action = $route->action;
-        $ctrl_file = APP . '/ctrl/' . $ctrl_class . 'Ctrl.php';
-        $ctrl_class = MODULE . '\ctrl\\' . $ctrl_class . 'Ctrl';
+        $ctrl_file = APP . '/ctrl/' . $control . 'Ctrl.php';
+        $ctrl_class = MODULE . '\ctrl\\' . $control . 'Ctrl';
         if (is_file($ctrl_file)) {
             include $ctrl_file;
             $ctrl = new $ctrl_class();
             $ctrl->$action();
+            \core\lib\log::log('CTRL: ' . $control . '    ACTION: ' . $action);
         } else {
             throw new \Exception('找不到控制器' . $ctrl_class);
         }

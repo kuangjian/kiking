@@ -1,5 +1,5 @@
 <?php
-
+ini_set('date.timezone', 'PRC');
 # 定义常量
 define('KIKING', realpath('./'));
 define('CORE', KIKING . '/core');
