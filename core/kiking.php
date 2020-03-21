@@ -52,6 +52,13 @@ class kiking
         if (is_file($file)) {
             extract($this->data);
             include $file;
+            // $loader = new \Twig\Loader\FilesystemLoader(APP . '/views');
+            // $twig = new \Twig\Environment($loader, [
+            //     'cache' => '/path/to/compilation_cache',
+            // ]);
+
+            // $template = $twig->load('index.html');
+            // $template->render(['the' => 'variables', 'go' => 'here']);
         }
     }
 }
