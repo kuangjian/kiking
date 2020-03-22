@@ -19,7 +19,6 @@ class conf
                     return $conf[$name];
                 } else {
                     throw new \Exception('没有这个配置项' . $name);
-                    
                 }
             } else {
                 throw new \Exception('找不到配置文件' . $file);

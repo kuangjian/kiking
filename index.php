@@ -1,6 +1,8 @@
 <?php
+
 header('Content-Type: text/html; charset=utf-8');
 ini_set('date.timezone', 'PRC');
+
 # 定义常量
 define('KIKING', realpath('./'));
 define('CORE', KIKING . '/core');

@@ -11,10 +11,12 @@ class kiking
     {
         \core\lib\log::init();
         $route = new \core\lib\route();
+        $module = $route->module;
         $control = $route->ctrl;
         $action = $route->action;
-        $ctrl_file = APP . '/ctrl/' . $control . 'Ctrl.php';
-        $ctrl_class = MODULE . '\ctrl\\' . $control . 'Ctrl';
+        
+        $ctrl_file = APP . '\\' . $module . '/ctrl/' . $control . 'Ctrl.php';
+        $ctrl_class = MODULE . '\\' . $module . '\ctrl\\' . $control . 'Ctrl';
         if (is_file($ctrl_file)) {
             include $ctrl_file;
             $ctrl = new $ctrl_class();
