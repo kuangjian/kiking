@@ -59,7 +59,7 @@ class kiking
                 'debug' => DEBUG
             ]);
             $template = $twig->load($file);
-            echo $template->render($this->data ? $this->data : '');
+            echo $template->render($this->data ? $this->data : []);
         }
     }
 }
