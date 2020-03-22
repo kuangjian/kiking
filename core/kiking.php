@@ -48,17 +48,18 @@ class kiking
 
     public function view($file)
     {
-        $file = APP . '/views/' . $file;
-        if (is_file($file)) {
-            extract($this->data);
-            include $file;
-            // $loader = new \Twig\Loader\FilesystemLoader(APP . '/views');
-            // $twig = new \Twig\Environment($loader, [
-            //     'cache' => '/path/to/compilation_cache',
-            // ]);
+        $files = APP . '/views/' . $file;
 
-            // $template = $twig->load('index.html');
-            // $template->render(['the' => 'variables', 'go' => 'here']);
+        if (is_file($files)) {
+            // extract($this->data);
+            // include $file;
+            $loader = new \Twig\Loader\FilesystemLoader(APP . '/views');
+            $twig = new \Twig\Environment($loader, [
+                'cache' => KIKING . '/log/twig',
+                'debug' => DEBUG
+            ]);
+            $template = $twig->load($file);
+            echo $template->render($this->data ? $this->data : '');
         }
     }
 }

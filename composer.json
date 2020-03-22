@@ -9,7 +9,7 @@
         "php": ">= 5.3.0",
         "filp/whoops": "*",
         "catfan/medoo": "*",
-        "twig/twig": "*"
+        "twig/twig": "1.*"
     },
     "repositories": {
         "packagist": {

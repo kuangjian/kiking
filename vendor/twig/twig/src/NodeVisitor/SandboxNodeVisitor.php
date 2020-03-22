@@ -26,17 +26,20 @@ use Twig\Node\PrintNode;
 use Twig\Node\SetNode;
 
 /**
+ * @final
+ *
  * @author Fabien Potencier <fabien@symfony.com>
  */
-final class SandboxNodeVisitor implements NodeVisitorInterface
+class SandboxNodeVisitor extends AbstractNodeVisitor
 {
-    private $inAModule = false;
-    private $tags;
-    private $filters;
-    private $functions;
+    protected $inAModule = false;
+    protected $tags;
+    protected $filters;
+    protected $functions;
+
     private $needsToStringWrap = false;
 
-    public function enterNode(Node $node, Environment $env): Node
+    protected function doEnterNode(Node $node, Environment $env)
     {
         if ($node instanceof ModuleNode) {
             $this->inAModule = true;
@@ -94,7 +97,7 @@ final class SandboxNodeVisitor implements NodeVisitorInterface
         return $node;
     }
 
-    public function leaveNode(Node $node, Environment $env): ?Node
+    protected function doLeaveNode(Node $node, Environment $env)
     {
         if ($node instanceof ModuleNode) {
             $this->inAModule = false;
@@ -109,7 +112,7 @@ final class SandboxNodeVisitor implements NodeVisitorInterface
         return $node;
     }
 
-    private function wrapNode(Node $node, string $name): void
+    private function wrapNode(Node $node, $name)
     {
         $expr = $node->getNode($name);
         if ($expr instanceof NameExpression || $expr instanceof GetAttrExpression) {
@@ -117,7 +120,7 @@ final class SandboxNodeVisitor implements NodeVisitorInterface
         }
     }
 
-    private function wrapArrayNode(Node $node, string $name): void
+    private function wrapArrayNode(Node $node, $name)
     {
         $args = $node->getNode($name);
         foreach ($args as $name => $_) {
@@ -125,8 +128,10 @@ final class SandboxNodeVisitor implements NodeVisitorInterface
         }
     }
 
-    public function getPriority(): int
+    public function getPriority()
     {
         return 0;
     }
 }
+
+class_alias('Twig\NodeVisitor\SandboxNodeVisitor', 'Twig_NodeVisitor_Sandbox');
